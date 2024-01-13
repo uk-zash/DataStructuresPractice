@@ -1,0 +1,27 @@
+class Solution(object):
+    def minSteps(self ,s, t):
+        if len(s) != len(t):
+            return -1  # Return an error or handle the case when strings have different lengths
+        
+        # Step 1: Create frequency arrays or dictionaries
+        s_freq = [0] * 26
+        t_freq = [0] * 26
+        
+        # Step 2: Update frequency array or dictionary for string s
+        for char in s:
+            s_freq[ord(char) - ord('a')] += 1
+        
+        # Step 3: Update frequency array or dictionary for string t
+        for char in t:
+            t_freq[ord(char) - ord('a')] += 1
+        
+        # Step 4: Calculate absolute differences and Step 5: Sum up the differences
+        steps = sum(abs(s_freq[i] - t_freq[i]) for i in range(26))
+        
+        return steps//2  # Divide by 2 because each step accounts for two characters (one in s and one in t)
+
+#
+
+a = Solution()
+b = a.minSteps("bab" , "aba")
+print(b)
